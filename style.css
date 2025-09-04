@@ -1,0 +1,217 @@
+/* This file is the input for the Tailwind CSS build process. 
+The @tailwind directives will be replaced by the complete set of
+Tailwind's base, component, and utility styles. 
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary brand colors */
+  --color-brand-gold: #C0B283; /* A refined brushed gold */
+  --color-brand-gold-hover: #E8D8AF; /* A brighter gold for hover effects */
+
+  /* Dark mode palette */
+  --color-background-dark: #1F2327; /* Deep charcoal black */
+  --color-surface-dark: #2B3035; /* Slightly lighter slate grey for cards/containers */
+  --color-text-primary-dark: #EAEAEA; /* Off-white for high contrast text */
+  --color-text-secondary-dark: #A0A4A8; /* Light grey for secondary text and details */
+  --color-border-dark: #44474B; /* Muted border color */
+
+  /* Default dark mode aliases */
+  --color-background: var(--color-background-dark);
+  --color-surface: var(--color-surface-dark);
+  --color-text-primary: var(--color-text-primary-dark);
+  --color-text-secondary: var(--color-text-secondary-dark);
+  --color-border: var(--color-border-dark);
+}
+
+/* Improved Light Mode Palette */
+[data-theme="light"] {
+  /* Main background and surface colors */
+  --color-background-light: #FBF9F6; /* A very soft, warm off-white (like parchment paper) */
+  --color-surface-light: #FFFFFF; /* Pure white for sections that need to stand out, creating subtle contrast */
+
+  /* Text colors for readability and elegance */
+  --color-text-primary-light: #2D3034; /* Rich charcoal grey for body text and headlines */
+  --color-text-secondary-light: #7A7C80; /* A warmer, mid-toned grey for secondary info and labels */
+  --color-text-tertiary-light: #A7A9AC; /* A very pale grey for disabled states or subtle copyright */
+
+  /* Accent colors */
+  --color-brand-gold-light-accent: #CFA474; /* A slightly deeper, richer gold that pops on a light background */
+
+  /* Borders and dividers */
+  --color-border-light: #EFECE6; /* A very soft, warm grey border for separation without harsh lines */
+
+  /* Aliases to easily switch themes */
+  --color-background: var(--color-background-light);
+  --color-surface: var(--color-surface-light);
+  --color-text-primary: var(--color-text-primary-light);
+  --color-text-secondary: var(--color-text-secondary-light);
+  --color-border: var(--color-border-light);
+  --color-brand-gold: var(--color-brand-gold-light-accent);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: background-color 0.5s, color 0.5s;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Set font family for all elements */
+h1, h2, h3, p, a, button, label, input, textarea {
+  font-family: inherit;
+}
+
+/* Adjust content positioning for mobile */
+@media (max-width: 767px) {
+  .hero-content {
+      bottom: 1rem;
+      left: 1rem;
+  }
+}
+
+/* Mobile menu specific styles */
+.mobile-menu-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80%; /* Takes 80% of the screen width */
+  max-width: 300px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 50;
+  height: 100vh;
+}
+
+.mobile-menu-container.open {
+  transform: translateX(0);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Gold glow animation for nav links */
+@keyframes goldGlow {
+  0% { color: var(--color-brand-gold); text-shadow: 0 0 5px var(--color-brand-gold), 0 0 10px var(--color-brand-gold); }
+  50% { color: rgba(255, 215, 0, 0.5); text-shadow: none; }
+  100% { color: var(--color-brand-gold); text-shadow: 0 0 5px var(--color-brand-gold), 0 0 10px var(--color-brand-gold); }
+}
+
+.nav-link-glow {
+  animation: goldGlow 3s infinite alternate;
+}
+
+/* Gold glow animation for dots */
+@keyframes dotGlow {
+  0% { box-shadow: 0 0 3px var(--color-brand-gold), 0 0 6px var(--color-brand-gold), 0 0 9px var(--color-brand-gold); }
+  50% { box-shadow: none; }
+  100% { box-shadow: 0 0 3px var(--color-brand-gold), 0 0 6px var(--color-brand-gold), 0 0 9px var(--color-brand-gold); }
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot.active {
+  background-color: var(--color-brand-gold);
+  animation: dotGlow 3s infinite alternate;
+}
+
+.main-content-color {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.main-text-color {
+  color: var(--color-text-primary);
+}
+
+.main-paragraph-color {
+  color: var(--color-text-secondary);
+}
+
+.surface-color {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.button-text-color {
+  color: var(--color-text-primary);
+}
+
+.button-bg-color {
+  background-color: var(--color-brand-gold);
+}
+
+.button-bg-color:hover {
+  background-color: var(--color-brand-gold-hover);
+}
+
+/* Container for the sliding sections */
+.page-container {
+  position: relative;
+  z-index: 20;
+  margin-top: 100vh; /* Pushes the container below the fixed hero section */
+  background-color: var(--color-background);
+  transition: background-color 0.5s;
+}
+
+.slideshow-container {
+  display: flex;
+  width: 300vw; /* Three sections side-by-side */
+  transition: transform 0.8s ease-in-out;
+}
+
+.slideshow-section {
+  width: 100vw;
+  flex-shrink: 0;
+}
+
+/* Animation for images in the "Suites" section */
+.suite-image {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.suite-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Animation for the entire card in the "Experiences" section */
+.experience-card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.experience-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Animation for gallery images */
+.gallery-image {
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}

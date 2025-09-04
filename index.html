@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxury Hotel Hero Section</title>
+    <!-- Tailwind CSS CDN for quick setup and styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation and Hero Content -->
+    <nav
+      class="fixed top-0 left-0 w-full z-40 flex justify-between items-center p-6 md:p-8 lg:p-10 bg-black/50 backdrop-blur-sm transition-colors duration-500"
+    >
+      <h2
+        class="text-2xl font-bold text-white"
+        style="color: var(--color-text-primary)"
+      >
+        HADRA
+      </h2>
+
+      <!-- Desktop Navigation -->
+      <div
+        class="hidden md:flex items-center space-x-8 text-gray-300 font-semibold text-lg"
+      >
+        <a
+          href="#rooms"
+          class="hover:text-white transition-colors duration-200 nav-link"
+          data-index="0"
+          style="color: var(--color-brand-gold)"
+          >Suites</a
+        >
+        <a
+          href="#experiences"
+          class="hover:text-white transition-colors duration-200 nav-link"
+          data-index="1"
+          style="color: var(--color-brand-gold)"
+          >Experiences</a
+        >
+        <a
+          href="#gallery"
+          class="hover:text-white transition-colors duration-200 nav-link"
+          data-index="2"
+          style="color: var(--color-brand-gold)"
+          >Gallery</a
+        >
+      </div>
+
+      <!-- Theme Switcher Button (Desktop) -->
+      <button
+        id="theme-switcher-desktop"
+        class="hidden md:flex items-center justify-center w-10 h-10 rounded-full hover:opacity-80 transition-opacity duration-200"
+        style="
+          background-color: var(--color-text-primary);
+          color: var(--color-background);
+        "
+      >
+        <!-- Moon Icon for Dark Theme -->
+        <svg
+          id="moon-icon"
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20.354 15.354A9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          ></path>
+        </svg>
+        <!-- Sun Icon for Light Theme (hidden by default) -->
+        <svg
+          id="sun-icon"
+          class="w-6 h-6 hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          ></path>
+        </svg>
+      </button>
+
+      <!-- Mobile menu button and theme switcher -->
+      <div class="md:hidden flex items-center space-x-4">
+        <button
+          id="theme-switcher-mobile"
+          class="flex items-center justify-center w-10 h-10 rounded-full hover:opacity-80 transition-opacity duration-200"
+          style="
+            background-color: var(--color-text-primary);
+            color: var(--color-background);
+          "
+        >
+          <!-- Moon Icon for Dark Theme -->
+          <svg
+            id="moon-icon-mobile"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M20.354 15.354A9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+            ></path>
+          </svg>
+          <!-- Sun Icon for Light Theme (hidden by default) -->
+          <svg
+            id="sun-icon-mobile"
+            class="w-6 h-6 hidden"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+            ></path>
+          </svg>
+        </button>
+        <button
+          id="mobile-menu-button"
+          class="focus:outline-none"
+          style="color: var(--color-text-primary)"
+        >
+          <svg
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Fixed Hero Section -->
+    <header class="fixed top-0 left-0 w-full h-screen overflow-hidden z-10">
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style="
+          background-image: url('https://placehold.co/1920x1080/000000/fff?text=Luxury+Hotel');
+        "
+      >
+        <!-- Overlay to make text readable -->
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+      </div>
+
+      <div
+        class="absolute bottom-16 left-16 md:bottom-24 md:left-24 lg:bottom-32 lg:left-32 z-20 hero-content"
+      >
+        <h1 class="text-4xl md:text-6xl font-extralight text-white">
+          Luxury Hotel
+        </h1>
+        <button
+          class="mt-4 px-6 py-3 text-black font-semibold rounded-full hover:opacity-80 transition-opacity duration-200"
+          style="
+            background-color: var(--color-brand-gold);
+            color: var(--color-text-primary);
+          "
+        >
+          RESERVE YOUR STAY
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Container -->
+    <div
+      id="mobile-menu-container"
+      class="mobile-menu-container"
+      style="background-color: var(--color-background)"
+    >
+      <div class="p-6 w-full flex flex-col items-center">
+        <div class="flex justify-end w-full">
+          <button
+            id="close-menu-button"
+            class="focus:outline-none"
+            style="color: var(--color-text-primary)"
+          >
+            <svg
+              class="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <ul
+          class="flex flex-col items-center space-y-8 mt-16 text-2xl font-bold"
+        >
+          <li>
+            <a
+              href="#rooms"
+              class="nav-link"
+              style="color: var(--color-brand-gold)"
+              >Suites</a
+            >
+          </li>
+          <li>
+            <a
+              href="#experiences"
+              class="nav-link"
+              style="color: var(--color-brand-gold)"
+              >Experiences</a
+            >
+          </li>
+          <li>
+            <a
+              href="#gallery"
+              class="nav-link"
+              style="color: var(--color-brand-gold)"
+              >Gallery</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Backdrop for the mobile menu -->
+    <div id="backdrop" class="hidden backdrop"></div>
+
+    <main
+      class="page-container overflow-hidden flex-grow"
+      style="background-color: var(--color-background)"
+    >
+      <!-- Slideshow dots (now placed between sections) -->
+      <div
+        class="flex justify-center items-center space-x-4 pt-10 pb-8"
+        style="background-color: var(--color-background)"
+      >
+        <div class="dot" data-index="0"></div>
+        <div class="dot" data-index="1"></div>
+        <div class="dot" data-index="2"></div>
+      </div>
+      <div id="slideshow-container" class="slideshow-container">
+        <!-- Rooms Section -->
+        <section
+          id="rooms"
+          class="slideshow-section"
+          style="background-color: var(--color-background)"
+        >
+          <div class="p-8 md:p-16 lg:p-24">
+            <div class="flex flex-col space-y-16">
+              <!-- Ocean View Suite -->
+              <div
+                class="flex flex-col md:flex-row items-center justify-between"
+              >
+                <div class="md:w-1/2">
+                  <h3
+                    class="text-3xl font-light mb-2"
+                    style="color: var(--color-text-primary)"
+                  >
+                    Ocean View Suite
+                  </h3>
+                  <p
+                    class="leading-relaxed mb-6"
+                    style="color: var(--color-text-secondary)"
+                  >
+                    Experience unparalleled luxury and comfort with breathtaking
+                    views of the ocean from your private balcony. Each suite
+                    offers a unique blend of elegance and modern amenities.
+                  </p>
+                  <div class="flex items-center space-x-6 mt-4">
+                    <span
+                      class="text-2xl font-bold"
+                      style="color: var(--color-text-primary)"
+                      >$500/night</span
+                    >
+                    <button
+                      class="px-6 py-3 font-semibold rounded-full hover:opacity-80 transition-opacity duration-200"
+                      style="
+                        background-color: var(--color-brand-gold);
+                        color: var(--color-text-primary);
+                      "
+                    >
+                      RESERVE
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="md:w-1/2 mt-8 md:mt-0 md:ml-12 overflow-hidden rounded-lg"
+                >
+                  <img
+                    src="https://placehold.co/800x600/2B3035/A0A4A8?text=Ocean+View+Suite"
+                    alt="Ocean View Suite"
+                    class="w-full shadow-lg suite-image"
+                    style="
+                      background-color: var(--color-surface);
+                      border: 1px solid var(--color-border);
+                    "
+                  />
+                </div>
+              </div>
+
+              <!-- Garden Terrace Room -->
+              <div
+                class="flex flex-col md:flex-row-reverse items-center justify-between"
+              >
+                <div class="md:w-1/2">
+                  <h3
+                    class="text-3xl font-light mb-2"
+                    style="color: var(--color-text-primary)"
+                  >
+                    Garden Terrace Room
+                  </h3>
+                  <p
+                    class="leading-relaxed mb-6"
+                    style="color: var(--color-text-secondary)"
+                  >
+                    Enjoy a serene and peaceful stay with direct access to our
+                    lush, private gardens. The Garden Terrace Room is your
+                    personal oasis of tranquility.
+                  </p>
+                  <div class="flex items-center space-x-6 mt-4">
+                    <span
+                      class="text-2xl font-bold"
+                      style="color: var(--color-text-primary)"
+                      >$400/night</span
+                    >
+                    <button
+                      class="px-6 py-3 font-semibold rounded-full hover:opacity-80 transition-opacity duration-200"
+                      style="
+                        background-color: var(--color-brand-gold);
+                        color: var(--color-text-primary);
+                      "
+                    >
+                      RESERVE
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="md:w-1/2 mt-8 md:mt-0 md:mr-12 overflow-hidden rounded-lg"
+                >
+                  <img
+                    src="https://placehold.co/800x600/2B3035/A0A4A8?text=Garden+Terrace+Room"
+                    alt="Garden Terrace Room"
+                    class="w-full shadow-lg suite-image"
+                    style="
+                      background-color: var(--color-surface);
+                      border: 1px solid var(--color-border);
+                    "
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Experiences Section -->
+        <section id="experiences" class="slideshow-section surface-color">
+          <div class="p-8 md:p-16 lg:p-24">
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12"
+            >
+              <!-- Dining Experience -->
+              <div
+                class="flex flex-col items-center text-center p-4 rounded-lg experience-card"
+                style="
+                  background-color: var(--color-surface);
+                  border: 1px solid var(--color-border);
+                "
+              >
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Fine+Dining"
+                  alt="Fine Dining Experience"
+                  class="w-full rounded-lg shadow-lg mb-4"
+                />
+                <h3
+                  class="text-3xl font-light mb-2"
+                  style="color: var(--color-text-primary)"
+                >
+                  Fine Dining
+                </h3>
+                <p
+                  class="leading-relaxed"
+                  style="color: var(--color-text-secondary)"
+                >
+                  Savor exquisite cuisine prepared by our world-class chefs at
+                  our signature restaurant, offering a menu of local and
+                  international dishes.
+                </p>
+              </div>
+
+              <!-- Spa & Wellness -->
+              <div
+                class="flex flex-col items-center text-center p-4 rounded-lg experience-card"
+                style="
+                  background-color: var(--color-surface);
+                  border: 1px solid var(--color-border);
+                "
+              >
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Spa+and+Wellness"
+                  alt="Spa and Wellness Experience"
+                  class="w-full rounded-lg shadow-lg mb-4"
+                />
+                <h3
+                  class="text-3xl font-light mb-2"
+                  style="color: var(--color-text-primary)"
+                >
+                  Spa & Wellness
+                </h3>
+                <p
+                  class="leading-relaxed"
+                  style="color: var(--color-text-secondary)"
+                >
+                  Rejuvenate your body and mind with our holistic spa
+                  treatments, from relaxing massages to therapeutic body wraps,
+                  all designed for your ultimate well-being.
+                </p>
+              </div>
+
+              <!-- Pool -->
+              <div
+                class="flex flex-col items-center text-center p-4 rounded-lg experience-card"
+                style="
+                  background-color: var(--color-surface);
+                  border: 1px solid var(--color-border);
+                "
+              >
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Pool"
+                  alt="Pool Experience"
+                  class="w-full rounded-lg shadow-lg mb-4"
+                />
+                <h3
+                  class="text-3xl font-light mb-2"
+                  style="color: var(--color-text-primary)"
+                >
+                  Pool
+                </h3>
+                <p
+                  class="leading-relaxed"
+                  style="color: var(--color-text-secondary)"
+                >
+                  Take a refreshing dip in our stunning pool, which offers
+                  breathtaking views and a perfect spot to unwind.
+                </p>
+              </div>
+
+              <!-- Free High-Speed Wi-Fi -->
+              <div
+                class="flex flex-col items-center text-center p-4 rounded-lg experience-card"
+                style="
+                  background-color: var(--color-surface);
+                  border: 1px solid var(--color-border);
+                "
+              >
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Wi-Fi"
+                  alt="Wi-Fi"
+                  class="w-full rounded-lg shadow-lg mb-4"
+                />
+                <h3
+                  class="text-3xl font-light mb-2"
+                  style="color: var(--color-text-primary)"
+                >
+                  Free High-Speed Wi-Fi
+                </h3>
+                <p
+                  class="leading-relaxed"
+                  style="color: var(--color-text-secondary)"
+                >
+                  Stay connected anywhere in the building—fast, reliable,
+                  unlimited.
+                </p>
+              </div>
+
+              <!-- Night Club -->
+              <div
+                class="flex flex-col items-center text-center p-4 rounded-lg experience-card"
+                style="
+                  background-color: var(--color-surface);
+                  border: 1px solid var(--color-border);
+                "
+              >
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Night+Club"
+                  alt="Night Club"
+                  class="w-full rounded-lg shadow-lg mb-4"
+                />
+                <h3
+                  class="text-3xl font-light mb-2"
+                  style="color: var(--color-text-primary)"
+                >
+                  Night Club
+                </h3>
+                <p
+                  class="leading-relaxed"
+                  style="color: var(--color-text-secondary)"
+                >
+                  Dance the night away at our exclusive night club, featuring a
+                  live DJ and a premium selection of cocktails and beverages.
+                </p>
+              </div>
+
+              <!-- Game Room -->
+              <div
+                class="flex flex-col items-center text-center p-4 rounded-lg experience-card"
+                style="
+                  background-color: var(--color-surface);
+                  border: 1px solid var(--color-border);
+                "
+              >
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Game+Room"
+                  alt="Game Room"
+                  class="w-full rounded-lg shadow-lg mb-4"
+                />
+                <h3
+                  class="text-3xl font-light mb-2"
+                  style="color: var(--color-text-primary)"
+                >
+                  Game Room
+                </h3>
+                <p
+                  class="leading-relaxed"
+                  style="color: var(--color-text-secondary)"
+                >
+                  Unwind with a variety of classic and modern games in our
+                  dedicated game room, perfect for a fun-filled evening with
+                  friends and family.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section
+          id="gallery"
+          class="slideshow-section"
+          style="background-color: var(--color-background)"
+        >
+          <div class="p-8 md:p-16 lg:p-24">
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
+            >
+              <!-- Gallery Image 1 -->
+              <div class="overflow-hidden rounded-lg shadow-lg">
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Hotel+Lobby"
+                  alt="Hotel Lobby"
+                  class="w-full h-full object-cover gallery-image"
+                />
+              </div>
+              <!-- Gallery Image 2 -->
+              <div class="overflow-hidden rounded-lg shadow-lg">
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Restaurant"
+                  alt="Restaurant"
+                  class="w-full h-full object-cover gallery-image"
+                />
+              </div>
+              <!-- Gallery Image 3 -->
+              <div class="overflow-hidden rounded-lg shadow-lg">
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Pool+View"
+                  alt="Pool View"
+                  class="w-full h-full object-cover gallery-image"
+                />
+              </div>
+              <!-- Gallery Image 4 -->
+              <div class="overflow-hidden rounded-lg shadow-lg">
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Guest+Room"
+                  alt="Guest Room"
+                  class="w-full h-full object-cover gallery-image"
+                />
+              </div>
+              <!-- Gallery Image 5 (initially hidden) -->
+              <div
+                class="overflow-hidden rounded-lg shadow-lg more-gallery-item hidden"
+              >
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Spa"
+                  alt="Spa"
+                  class="w-full h-full object-cover gallery-image"
+                />
+              </div>
+              <!-- Gallery Image 6 (initially hidden) -->
+              <div
+                class="overflow-hidden rounded-lg shadow-lg more-gallery-item hidden"
+              >
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Gym"
+                  alt="Gym"
+                  class="w-full h-full object-cover gallery-image"
+                />
+              </div>
+              <!-- Gallery Image 7 (initially hidden) -->
+              <div
+                class="overflow-hidden rounded-lg shadow-lg more-gallery-item hidden"
+              >
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Conference+Room"
+                  alt="Conference Room"
+                  class="w-full h-full object-cover gallery-image"
+                />
+              </div>
+              <!-- Gallery Image 8 (initially hidden) -->
+              <div
+                class="overflow-hidden rounded-lg shadow-lg more-gallery-item hidden"
+              >
+                <img
+                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Exterior"
+                  alt="Hotel Exterior"
+                  class="w-full h-full object-cover gallery-image"
+                />
+              </div>
+            </div>
+            <!-- "Show More" Button -->
+            <div class="mt-8 flex justify-center">
+              <button
+                id="show-more-btn"
+                class="px-6 py-3 font-semibold rounded-full hover:opacity-80 transition-opacity duration-200"
+                style="
+                  background-color: var(--color-brand-gold);
+                  color: var(--color-text-primary);
+                "
+              >
+                Show More
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Find Us Section (Static, not part of slideshow) -->
+      <section
+        id="find-us"
+        class="p-8 md:p-16 lg:p-24"
+        style="background-color: var(--color-background)"
+      >
+        <h2
+          class="text-3xl md:text-5xl font-light text-center mb-10 main-text-color"
+        >
+          Find Us
+        </h2>
+        <div class="flex flex-col lg:flex-row gap-8 lg:gap-16">
+          <!-- Map Container -->
+          <div class="w-full lg:w-2/3 rounded-lg shadow-lg overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.257008103328!2d-73.9878536845941!3d40.74844087932822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25964f40d16c5%3A0x6762c9066665c71d!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1628173549721!5m2!1sen!2sus"
+              width="100%"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+            >
+            </iframe>
+          </div>
+          <!-- Contact Info Container -->
+          <div class="w-full lg:w-1/3 p-6 rounded-lg shadow-lg surface-color">
+            <h3 class="text-2xl font-semibold mb-4 main-text-color">
+              Contact Information
+            </h3>
+            <p class="mb-2 main-paragraph-color">
+              123 Luxury Lane, Metropolis, 10001
+            </p>
+            <p class="mb-2 main-paragraph-color">Phone: +1 (555) 123-4567</p>
+            <p class="mb-2 main-paragraph-color">Email: info@hadrahotel.com</p>
+            <p class="main-paragraph-color">Open 24/7</p>
+          </div>
+        </div>
+      </section>
+
+      <footer
+        class="p-8 md:p-16 text-center"
+        style="background-color: var(--color-background)"
+      >
+        <p class="text-xs main-paragraph-color">
+          &copy; 2024 HADRA. All rights reserved.
+        </p>
+      </footer>
+    </main>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
