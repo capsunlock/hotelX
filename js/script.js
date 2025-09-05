@@ -136,7 +136,7 @@ window.onload = function() {
                     if (!isPaused) {
                         updateSlideshow(currentSlideIndex + 1);
                     }
-                }, 6000);
+                }, 24000);
             }
 
             // Add click listeners to dots
@@ -183,42 +183,43 @@ window.onload = function() {
             });
 
             // Touch-based swipe for mobile navigation
-            let touchStartX = 0;
-            let touchEndX = 0;
-            const swipeThreshold = 50; // Minimum distance to register a swipe
 
-            slideshowContainer.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
-                slideshowContainer.style.transition = 'transform 0s'; // Remove transition for smooth dragging
-                clearInterval(slideshowInterval);
-                isPaused = true;
-            });
+            // let touchStartX = 0;
+            // let touchEndX = 0;
+            // const swipeThreshold = 50; // Minimum distance to register a swipe
 
-            slideshowContainer.addEventListener('touchmove', (e) => {
-                touchEndX = e.touches[0].clientX;
-                const diff = touchEndX - touchStartX;
-                slideshowContainer.style.transform = `translateX(calc(-${currentSlideIndex * 100}vw + ${diff}px))`;
-            });
+            // slideshowContainer.addEventListener('touchstart', (e) => {
+            //     touchStartX = e.touches[0].clientX;
+            //     slideshowContainer.style.transition = 'transform 0s'; // Remove transition for smooth dragging
+            //     clearInterval(slideshowInterval);
+            //     isPaused = true;
+            // });
 
-            slideshowContainer.addEventListener('touchend', () => {
-                const diff = touchEndX - touchStartX;
-                slideshowContainer.style.transition = 'transform 0.8s ease-in-out'; // Re-add transition
+            // slideshowContainer.addEventListener('touchmove', (e) => {
+            //     touchEndX = e.touches[0].clientX;
+            //     const diff = touchEndX - touchStartX;
+            //     slideshowContainer.style.transform = `translateX(calc(-${currentSlideIndex * 100}vw + ${diff}px))`;
+            // });
 
-                if (diff > swipeThreshold) {
-                    // Swiped right, go to previous slide
-                    updateSlideshow(currentSlideIndex - 1);
-                } else if (diff < -swipeThreshold) {
-                    // Swiped left, go to next slide
-                    updateSlideshow(currentSlideIndex + 1);
-                } else {
-                    // Not enough swipe, snap back to current slide
-                    updateSlideshow(currentSlideIndex);
-                }
-                touchStartX = 0;
-                touchEndX = 0;
-                isPaused = false;
-                startSlideshow();
-            });
+            // slideshowContainer.addEventListener('touchend', () => {
+            //     const diff = touchEndX - touchStartX;
+            //     slideshowContainer.style.transition = 'transform 0.8s ease-in-out'; // Re-add transition
+
+            //     if (diff > swipeThreshold) {
+            //         // Swiped right, go to previous slide
+            //         updateSlideshow(currentSlideIndex - 1);
+            //     } else if (diff < -swipeThreshold) {
+            //         // Swiped left, go to next slide
+            //         updateSlideshow(currentSlideIndex + 1);
+            //     } else {
+            //         // Not enough swipe, snap back to current slide
+            //         updateSlideshow(currentSlideIndex);
+            //     }
+            //     touchStartX = 0;
+            //     touchEndX = 0;
+            //     isPaused = false;
+            //     startSlideshow();
+            // });
 
             // Initial setup
             updateSlideshow(0);
