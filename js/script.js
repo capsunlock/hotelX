@@ -42,7 +42,7 @@ window.onload = function() {
                     // Switch to Dark Theme
                     body.dataset.theme = 'dark';
                     nav.style.backgroundColor = 'rgba(31, 35, 37, 0.5)';
-                    navTitle.style.color = 'var(--color-text-primary-dark)';
+                    if(navTitle) navTitle.style.color = 'var(--color-text-primary-dark)';
                     mobileMenuContainer.style.backgroundColor = 'var(--color-background-dark)';
                     desktopThemeSwitcher.style.backgroundColor = 'var(--color-text-primary-dark)';
                     desktopThemeSwitcher.style.color = 'var(--color-background-dark)';
@@ -58,7 +58,7 @@ window.onload = function() {
                     // Switch to Light Theme
                     body.dataset.theme = 'light';
                     nav.style.backgroundColor = 'rgba(248, 247, 244, 0.5)';
-                    navTitle.style.color = 'var(--color-text-primary-light)';
+                    if(navTitle) navTitle.style.color = 'var(--color-text-primary-light)';
                     mobileMenuContainer.style.backgroundColor = 'var(--color-background-light)';
                     desktopThemeSwitcher.style.backgroundColor = 'var(--color-text-primary-light)';
                     desktopThemeSwitcher.style.color = 'var(--color-background-light)';
@@ -85,6 +85,8 @@ window.onload = function() {
                         image.classList.remove('hidden');
                     });
                     showMoreBtn.classList.add('hidden');
+                    // Adjust container height after adding new content
+                    setTimeout(adjustContainerHeight, 100); 
                 });
             }
 
@@ -98,12 +100,23 @@ window.onload = function() {
             let currentSlideIndex = 0;
             let slideshowInterval;
             let isPaused = false;
+            let resizeTimer; // Timer for debouncing the resize event
+            
+            function adjustContainerHeight() {
+                if (sections[currentSlideIndex]) {
+                    const activeSectionHeight = sections[currentSlideIndex].offsetHeight;
+                    slideshowContainer.style.height = `${activeSectionHeight}px`;
+                }
+            }
 
             function updateSlideshow(index) {
                 // Ensure the index is within the valid range (0, 1, 2)
                 currentSlideIndex = (index + sections.length) % sections.length;
                 const offset = currentSlideIndex * -100;
                 slideshowContainer.style.transform = `translateX(${offset}vw)`;
+
+                // Adjust the container's height to the new section's height
+                adjustContainerHeight();
 
                 // Update dot highlights
                 dots.forEach((dot) => {
@@ -180,6 +193,14 @@ window.onload = function() {
                 startSlideshow();
             });
 
-            // Initial setup
-            updateSlideshow(0);
+            // Adjust height on window resize with a debounce
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(adjustContainerHeight, 150); // Wait 150ms after resize stops
+            });
+
+            // Initial setup with a small delay to allow for mobile rendering
+            setTimeout(() => {
+                updateSlideshow(0);
+            }, 100);
         };

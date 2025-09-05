@@ -178,7 +178,7 @@ h1, h2, h3, p, a, button, label, input, textarea {
 .slideshow-container {
   display: flex;
   width: 300vw; /* Three sections side-by-side */
-  transition: transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out, height 0.5s ease-in-out;
 }
 
 .slideshow-section {
