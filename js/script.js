@@ -202,5 +202,5 @@ window.onload = function() {
             // Initial setup with a small delay to allow for mobile rendering
             setTimeout(() => {
                 updateSlideshow(0);
-            }, 100);
+            }, 200);
         };
