@@ -185,13 +185,10 @@
       </div>
     </header>
 
-    <!-- Mobile Menu Container -->
-    <div
-      id="mobile-menu-container"
-      class="mobile-menu-container"
-      style="background-color: var(--color-background)"
-    >
-      <div class="p-6 w-full flex flex-col items-center">
+    <div id="mobile-menu-container" class="mobile-menu-container">
+      <div
+        class="p-6 absolute left-0 right-0 w-full flex flex-col items-center md:hidden"
+      >
         <div class="flex justify-end w-full">
           <button
             id="close-menu-button"
@@ -214,12 +211,13 @@
           </button>
         </div>
         <ul
-          class="flex flex-col items-center space-y-8 mt-16 text-2xl font-bold"
+          class="flex flex-col items-center space-y-4 mt-16 text-1xl font-bold"
         >
           <li>
             <a
               href="#rooms"
               class="nav-link"
+              data-index="0"
               style="color: var(--color-brand-gold)"
               >Suites</a
             >
@@ -228,6 +226,7 @@
             <a
               href="#experiences"
               class="nav-link"
+              data-index="1"
               style="color: var(--color-brand-gold)"
               >Experiences</a
             >
@@ -236,6 +235,7 @@
             <a
               href="#gallery"
               class="nav-link"
+              data-index="2"
               style="color: var(--color-brand-gold)"
               >Gallery</a
             >

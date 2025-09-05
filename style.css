@@ -81,8 +81,8 @@ h1, h2, h3, p, a, button, label, input, textarea {
   position: fixed;
   top: 0;
   right: 0;
-  width: 80%; /* Takes 80% of the screen width */
-  max-width: 300px;
+  width: 25%; /* Takes 80% of the screen width */
+  max-width: 200px;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 50;
@@ -215,3 +215,4 @@ h1, h2, h3, p, a, button, label, input, textarea {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
+
