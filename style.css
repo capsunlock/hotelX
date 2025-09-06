@@ -38,9 +38,6 @@ Tailwind's base, component, and utility styles.
   --color-text-secondary-light: #7A7C80; /* A warmer, mid-toned grey for secondary info and labels */
   --color-text-tertiary-light: #A7A9AC; /* A very pale grey for disabled states or subtle copyright */
 
-  /* Accent colors */
-  --color-brand-gold-light-accent: #CFA474; /* A slightly deeper, richer gold that pops on a light background */
-
   /* Borders and dividers */
   --color-border-light: #EFECE6; /* A very soft, warm grey border for separation without harsh lines */
 
@@ -50,7 +47,14 @@ Tailwind's base, component, and utility styles.
   --color-text-primary: var(--color-text-primary-light);
   --color-text-secondary: var(--color-text-secondary-light);
   --color-border: var(--color-border-light);
-  --color-brand-gold: var(--color-brand-gold-light-accent);
+  
+  /* Overwrite brand colors for light theme */
+  --color-brand-gold: #CFA474;
+  --color-brand-gold-hover: #E0B890;
+
+  .button-bg-color:hover {
+    background-color: var(--color-brand-gold-hover);
+  }
 }
 
 body {
@@ -215,4 +219,3 @@ h1, h2, h3, p, a, button, label, input, textarea {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
-
