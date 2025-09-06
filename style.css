@@ -11,6 +11,7 @@ Tailwind's base, component, and utility styles.
   /* Primary brand colors */
   --color-brand-gold: #C0B283; /* A refined brushed gold */
   --color-brand-gold-hover: #E8D8AF; /* A brighter gold for hover effects */
+  --color-brand-gold-light-accent: #F4E8D0; /* Light gold accent for light theme */
 
   /* Dark mode palette */
   --color-background-dark: #1F2327; /* Deep charcoal black */
@@ -18,6 +19,7 @@ Tailwind's base, component, and utility styles.
   --color-text-primary-dark: #EAEAEA; /* Off-white for high contrast text */
   --color-text-secondary-dark: #A0A4A8; /* Light grey for secondary text and details */
   --color-border-dark: #44474B; /* Muted border color */
+  --color-nav-bg-dark: rgba(31, 35, 39, 0.8); /* Semi-transparent nav background */
 
   /* Default dark mode aliases */
   --color-background: var(--color-background-dark);
@@ -25,21 +27,28 @@ Tailwind's base, component, and utility styles.
   --color-text-primary: var(--color-text-primary-dark);
   --color-text-secondary: var(--color-text-secondary-dark);
   --color-border: var(--color-border-dark);
+  --color-nav-bg: var(--color-nav-bg-dark);
 }
 
 /* Improved Light Mode Palette */
 [data-theme="light"] {
   /* Main background and surface colors */
   --color-background-light: #FBF9F6; /* A very soft, warm off-white (like parchment paper) */
-  --color-surface-light: #FFFFFF; /* Pure white for sections that need to stand out, creating subtle contrast */
+  --color-surface-light: #FFFFFF; /* Pure white for sections that need to stand out */
 
   /* Text colors for readability and elegance */
   --color-text-primary-light: #2D3034; /* Rich charcoal grey for body text and headlines */
-  --color-text-secondary-light: #7A7C80; /* A warmer, mid-toned grey for secondary info and labels */
-  --color-text-tertiary-light: #A7A9AC; /* A very pale grey for disabled states or subtle copyright */
+  --color-text-secondary-light: #7A7C80; /* A warmer, mid-toned grey for secondary info */
+  --color-text-tertiary-light: #A7A9AC; /* A very pale grey for disabled states */
 
   /* Borders and dividers */
-  --color-border-light: #EFECE6; /* A very soft, warm grey border for separation without harsh lines */
+  --color-border-light: #EFECE6; /* A very soft, warm grey border */
+  --color-nav-bg-light: rgba(251, 249, 246, 0.8); /* Semi-transparent nav background */
+
+  /* Light theme brand colors */
+  --color-brand-gold: #CFA474; /* Adjusted gold for light theme */
+  --color-brand-gold-hover: #E0B890; /* Lighter gold hover for light theme */
+  --color-brand-gold-light-accent: #F4E8D0; /* Light gold accent */
 
   /* Aliases to easily switch themes */
   --color-background: var(--color-background-light);
@@ -47,24 +56,24 @@ Tailwind's base, component, and utility styles.
   --color-text-primary: var(--color-text-primary-light);
   --color-text-secondary: var(--color-text-secondary-light);
   --color-border: var(--color-border-light);
-  
-  /* Overwrite brand colors for light theme */
-  --color-brand-gold: #CFA474;
-  --color-brand-gold-hover: #E0B890;
+  --color-nav-bg: var(--color-nav-bg-light);
+}
 
-  .button-bg-color:hover {
-    background-color: var(--color-brand-gold-hover);
-  }
+/* Global styles */
+* {
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--color-background);
   color: var(--color-text-primary);
-  transition: background-color 0.5s, color 0.5s;
+  transition: background-color 0.5s ease, color 0.5s ease;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 /* Set font family for all elements */
@@ -72,11 +81,47 @@ h1, h2, h3, p, a, button, label, input, textarea {
   font-family: inherit;
 }
 
+/* Hover effect for buttons */
+.hover-effect {
+  opacity: 1;
+}
+
+.hover-effect:hover {
+  background-color: var(--color-brand-gold-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Navigation link hover states */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-brand-gold-hover) !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-brand-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
 /* Adjust content positioning for mobile */
 @media (max-width: 767px) {
   .hero-content {
-      bottom: 1rem;
-      left: 1rem;
+    bottom: 1rem;
+    left: 1rem;
   }
 }
 
@@ -85,12 +130,31 @@ h1, h2, h3, p, a, button, label, input, textarea {
   position: fixed;
   top: 0;
   right: 0;
-  width: 25%; /* Takes 80% of the screen width */
-  max-width: 200px;
+  width: 80vw; /* Responsive width based on viewport */
+  max-width: 320px; /* Max width for larger screens */
+  min-width: 250px; /* Minimum width for usability */
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 50;
   height: 100vh;
+  background-color: var(--color-background);
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Adjust for very small screens */
+@media (max-width: 480px) {
+  .mobile-menu-container {
+    width: 85vw;
+    min-width: 200px;
+  }
+}
+
+/* Adjust for tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .mobile-menu-container {
+    width: 60vw;
+    max-width: 350px;
+  }
 }
 
 .mobile-menu-container.open {
@@ -106,24 +170,46 @@ h1, h2, h3, p, a, button, label, input, textarea {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 40;
   transition: opacity 0.3s ease-in-out;
+  backdrop-filter: blur(2px);
 }
 
 /* Gold glow animation for nav links */
 @keyframes goldGlow {
-  0% { color: var(--color-brand-gold); text-shadow: 0 0 5px var(--color-brand-gold), 0 0 10px var(--color-brand-gold); }
-  50% { color: rgba(255, 215, 0, 0.5); text-shadow: none; }
-  100% { color: var(--color-brand-gold); text-shadow: 0 0 5px var(--color-brand-gold), 0 0 10px var(--color-brand-gold); }
+  0% { 
+    color: var(--color-brand-gold); 
+    text-shadow: 0 0 5px rgba(192, 178, 131, 0.5), 0 0 10px rgba(192, 178, 131, 0.3); 
+  }
+  50% { 
+    color: var(--color-brand-gold-hover); 
+    text-shadow: 0 0 8px rgba(232, 216, 175, 0.6), 0 0 15px rgba(232, 216, 175, 0.4); 
+  }
+  100% { 
+    color: var(--color-brand-gold); 
+    text-shadow: 0 0 5px rgba(192, 178, 131, 0.5), 0 0 10px rgba(192, 178, 131, 0.3); 
+  }
 }
 
 .nav-link-glow {
-  animation: goldGlow 3s infinite alternate;
+  animation: goldGlow 3s infinite alternate ease-in-out;
 }
 
 /* Gold glow animation for dots */
 @keyframes dotGlow {
-  0% { box-shadow: 0 0 3px var(--color-brand-gold), 0 0 6px var(--color-brand-gold), 0 0 9px var(--color-brand-gold); }
-  50% { box-shadow: none; }
-  100% { box-shadow: 0 0 3px var(--color-brand-gold), 0 0 6px var(--color-brand-gold), 0 0 9px var(--color-brand-gold); }
+  0% { 
+    box-shadow: 0 0 3px rgba(192, 178, 131, 0.6), 
+                0 0 6px rgba(192, 178, 131, 0.4), 
+                0 0 9px rgba(192, 178, 131, 0.2); 
+  }
+  50% { 
+    box-shadow: 0 0 5px rgba(232, 216, 175, 0.7), 
+                0 0 10px rgba(232, 216, 175, 0.5), 
+                0 0 15px rgba(232, 216, 175, 0.3); 
+  }
+  100% { 
+    box-shadow: 0 0 3px rgba(192, 178, 131, 0.6), 
+                0 0 6px rgba(192, 178, 131, 0.4), 
+                0 0 9px rgba(192, 178, 131, 0.2); 
+  }
 }
 
 .dot {
@@ -132,12 +218,20 @@ h1, h2, h3, p, a, button, label, input, textarea {
   border-radius: 50%;
   background-color: var(--color-text-secondary);
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+  padding: 0;
+}
+
+.dot:hover {
+  transform: scale(1.2);
+  background-color: var(--color-brand-gold);
 }
 
 .dot.active {
   background-color: var(--color-brand-gold);
-  animation: dotGlow 3s infinite alternate;
+  animation: dotGlow 3s infinite alternate ease-in-out;
+  transform: scale(1.1);
 }
 
 .main-content-color {
@@ -158,64 +252,95 @@ h1, h2, h3, p, a, button, label, input, textarea {
   color: var(--color-text-primary);
 }
 
-.button-text-color {
-  color: var(--color-text-primary);
-}
-
-.button-bg-color {
-  background-color: var(--color-brand-gold);
-}
-
-.button-bg-color:hover {
-  background-color: var(--color-brand-gold-hover);
-}
-
 /* Container for the sliding sections */
 .page-container {
   position: relative;
   z-index: 20;
   margin-top: 100vh; /* Pushes the container below the fixed hero section */
   background-color: var(--color-background);
-  transition: background-color 0.5s;
+  transition: background-color 0.5s ease;
 }
 
 .slideshow-container {
   display: flex;
   width: 300vw; /* Three sections side-by-side */
-  transition: transform 0.8s ease-in-out, height 0.5s ease-in-out;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), height 0.5s ease;
+  will-change: transform, height;
 }
 
 .slideshow-section {
   width: 100vw;
   flex-shrink: 0;
+  overflow-x: hidden;
 }
 
 /* Animation for images in the "Suites" section */
 .suite-image {
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .suite-image:hover {
   transform: scale(1.03);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* Animation for the entire card in the "Experiences" section */
 .experience-card {
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .experience-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+              0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Animation for gallery images */
 .gallery-image {
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-image:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus states for accessibility */
+button:focus,
+a:focus {
+  outline: 2px solid var(--color-brand-gold);
+  outline-offset: 2px;
+}
+
+/* Skip to main content link for screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Smooth scrolling for browsers that don't support scroll-behavior */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
