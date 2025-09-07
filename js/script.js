@@ -406,7 +406,7 @@ class HotelWebsite {
       if (!this.isPaused) {
         this.updateSlideshow(this.currentSlideIndex + 1);
       }
-    }, 24000);
+    }, 36000);
   }
   
   stopSlideshow() {
