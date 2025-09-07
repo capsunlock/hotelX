@@ -144,7 +144,7 @@ h1, h2, h3, p, a, button, label, input, textarea {
 /* Adjust for very small screens */
 @media (max-width: 480px) {
   .mobile-menu-container {
-    width: 20vw;
+    width: 40vw;
     min-width: 50px;
   }
 }
