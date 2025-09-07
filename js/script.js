@@ -142,21 +142,65 @@ class HotelWebsite {
     element.addEventListener(event, handler, options);
     this.listeners.push({ element, event, handler, options });
   }
+
+  handleFocusTrap(e) {
+    if (e.key !== 'Tab') {
+      return;
+    }
+
+    const { mobileMenuContainer } = this.elements;
+    const focusableElements = mobileMenuContainer.querySelectorAll(
+      'a[href]:not([disabled]), button:not([disabled])'
+    );
+
+    // Add this check to prevent errors
+    if (focusableElements.length === 0) {
+        e.preventDefault(); // Prevent tabbing away if there's nothing to focus on
+        return;
+    }
+
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) { // If Shift + Tab
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus();
+        e.preventDefault();
+      }
+    } else { // If Tab
+      if (document.activeElement === lastFocusableElement) {
+        firstFocusableElement.focus();
+        e.preventDefault();
+      }
+    }
+  }
   
+  // Inside the setupMobileMenu method
   setupMobileMenu() {
     const { mobileMenuButton, closeMenuButton, mobileMenuContainer, backdrop } = this.elements;
     
+    // Bind the context of 'this' for the event listener
+    this.boundHandleFocusTrap = this.handleFocusTrap.bind(this);
+
     if (mobileMenuButton && closeMenuButton && mobileMenuContainer && backdrop) {
       const openMenu = () => {
         mobileMenuContainer.classList.add('open');
         backdrop.classList.remove('hidden');
         mobileMenuButton.setAttribute('aria-expanded', 'true');
+        // Add the event listener when the menu opens
+        document.addEventListener('keydown', this.boundHandleFocusTrap);
+        // Focus the first element in the menu
+        mobileMenuContainer.querySelector('button, a').focus();
       };
       
       const closeMenu = () => {
         mobileMenuContainer.classList.remove('open');
         backdrop.classList.add('hidden');
         mobileMenuButton?.setAttribute('aria-expanded', 'false');
+        // Remove the event listener when the menu closes
+        document.removeEventListener('keydown', this.boundHandleFocusTrap);
+        // Return focus to the menu button
+        mobileMenuButton?.focus();
       };
       
       this.addEventListener(mobileMenuButton, 'click', openMenu);

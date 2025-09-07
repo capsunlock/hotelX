@@ -326,10 +326,10 @@ h1, h2, h3, p, a, button, label, input, textarea {
 }
 
 /* Focus states for accessibility */
-button:focus,
-a:focus {
-  outline: 2px solid var(--color-brand-gold);
-  outline-offset: 2px;
+:focus-visible {
+  outline: 3px solid var(--color-brand-gold);
+  outline-offset: 3px;
+  border-radius: 4px; /* Optional: adds slightly rounded corners to the outline */
 }
 
 /* Skip to main content link for screen readers */
