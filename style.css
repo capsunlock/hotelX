@@ -273,7 +273,7 @@ h1, h2, h3, p, a, button, label, input, textarea {
 /* Adjust for very small screens */
 @media (max-width: 480px) {
   .slideshow-container  {
-    height: 120vw;
+    height: 150vw;
     min-height: 450px;
     max-height: 1000px;
   }

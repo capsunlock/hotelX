@@ -1338,8 +1338,8 @@ h1, h2, h3, p, a, button, label, input, textarea {
 
 @media (max-width: 480px) {
   .slideshow-container  {
-    height: 100vw;
-    min-height: 350px;
+    height: 150vw;
+    min-height: 450px;
     max-height: 1000px;
   }
 }
@@ -1349,7 +1349,7 @@ h1, h2, h3, p, a, button, label, input, textarea {
 @media (min-width: 481px) and (max-width: 768px) {
   .slideshow-container  {
     height: 100vw;
-    min-height: 350px;
+    min-height: 400px;
   }
 }
 
@@ -1396,10 +1396,11 @@ h1, h2, h3, p, a, button, label, input, textarea {
 
 /* Focus states for accessibility */
 
-button:focus,
-a:focus {
-  outline: 2px solid var(--color-brand-gold);
-  outline-offset: 2px;
+:focus-visible {
+  outline: 3px solid var(--color-brand-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+  /* Optional: adds slightly rounded corners to the outline */
 }
 
 /* Skip to main content link for screen readers */
