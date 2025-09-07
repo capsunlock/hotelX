@@ -275,7 +275,7 @@ h1, h2, h3, p, a, button, label, input, textarea {
   .slideshow-container  {
     height: 100vw;
     min-height: 350px;
-    max-height: max-content;
+    max-height: 1000px;
   }
 }
 
