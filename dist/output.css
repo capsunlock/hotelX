@@ -679,10 +679,6 @@ video {
   display: flex;
 }
 
-.table {
-  display: table;
-}
-
 .grid {
   display: grid;
 }
@@ -1523,6 +1519,81 @@ h1, h2, h3, p, a, button, label, input, textarea {
 
 #animated-text {
   font-family: 'Dancing Script', cursive;
+}
+
+/* --- Styling for the About / Our Story Section --- */
+
+/* Style the main heading 'Our Story' */
+
+#about h2 {
+  font-family: 'Dancing Script', cursive;
+  /* Use the elegant script font */
+  color: var(--color-brand-gold);
+  /* Use the brand's gold color */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  /* Add subtle depth */
+}
+
+/* Improve paragraph readability */
+
+#about .story-paragraph {
+  line-height: 1.8;
+  /* Increase line spacing for easier reading */
+  max-width: 60ch;
+  /* Optimal line length for readability */
+}
+
+/* Add a hover effect to the image */
+
+#about img {
+  border: 1px solid var(--color-border);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+#about img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the 'Amenities & Dining' container */
+
+#about .amenities-container {
+  margin-top: 4rem;
+  /* Add space between 'Our Story' and this section */
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  /* Add a separator line */
+}
+
+/* Style the amenities list for a cleaner look */
+
+#about .amenities-container ul {
+  list-style-type: none;
+  /* Remove default bullets */
+  padding-left: 0;
+  margin-top: 1.5rem;
+}
+
+#about .amenities-container li {
+  position: relative;
+  padding-left: 2em;
+  /* Create space for a custom bullet */
+  margin-bottom: 1rem;
+  /* Space out list items */
+  color: var(--color-text-secondary);
+}
+
+/* Create a custom, gold-colored bullet for each list item */
+
+#about .amenities-container li::before {
+  content: '—';
+  /* Use an em dash for an elegant bullet */
+  position: absolute;
+  left: 0;
+  color: var(--color-brand-gold);
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1;
 }
 
 .hover\:scale-105:hover {
