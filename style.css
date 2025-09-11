@@ -363,3 +363,24 @@ h1, h2, h3, p, a, button, label, input, textarea {
     scroll-behavior: auto !important;
   }
 }
+
+.char {
+    /* Initial state: invisible and slightly offset */
+    opacity: 0;
+    transform: translateY(20px);
+    /* The animation itself */
+    animation: revealChar 0.4s forwards ease-out;
+    /* Keep it as an inline block for proper spacing and positioning */
+    display: inline-block;
+}
+
+@keyframes revealChar {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#animated-text {
+  font-family: 'Dancing Script', cursive;
+}

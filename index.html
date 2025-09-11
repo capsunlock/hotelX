@@ -6,7 +6,11 @@
     <title>Luxury Hotel Hero Section</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/script.js" defer></script>
-    <link rel="stylesheet" href="dist/output.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <nav
@@ -57,93 +61,59 @@
 
       <button
         id="theme-switcher-desktop"
-        class="hidden md:flex items-center justify-center w-10 h-10 rounded-full transition-opacity duration-200"
-        style="
-          background-color: var(--color-text-primary);
-          color: var(--color-background);
-        "
-        role="button"
         aria-label="Toggle theme"
         aria-pressed="false"
+        class="hidden md:block"
       >
-        <svg
-          id="moon-icon"
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M20.354 15.354A9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-          ></path>
-        </svg>
-        <svg
-          id="sun-icon"
-          class="w-6 h-6 hidden"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 3v1m0 16v1m9-9h1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-          ></path>
-        </svg>
+        <picture id="moon-pic-desktop" class="icon">
+          <source srcset="images/icons/moon.avif" type="image/avif" />
+          <source srcset="images/icons/moon.webp" type="image/webp" />
+          <img
+            src="images/icons/moon.png"
+            alt="Moon icon"
+            width="24"
+            height="24"
+          />
+        </picture>
+
+        <picture id="sun-pic-desktop" class="icon hidden">
+          <source srcset="images/icons/day-mode.avif" type="image/avif" />
+          <source srcset="images/icons/day-mode.webp" type="image/webp" />
+          <img
+            src="images/icons/day-mode.png"
+            alt="Sun icon"
+            width="24"
+            height="24"
+          />
+        </picture>
       </button>
 
       <div class="md:hidden flex items-center space-x-4">
         <button
           id="theme-switcher-mobile"
-          class="flex items-center justify-center w-10 h-10 rounded-full transition-opacity duration-200"
-          style="
-            background-color: var(--color-text-primary);
-            color: var(--color-background);
-          "
-          role="button"
           aria-label="Toggle theme"
           aria-pressed="false"
         >
-          <svg
-            id="moon-icon-mobile"
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M20.354 15.354A9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-            ></path>
-          </svg>
-          <svg
-            id="sun-icon-mobile"
-            class="w-6 h-6 hidden"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 3v1m0 16v1m9-9h1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-            ></path>
-          </svg>
+          <picture id="moon-pic-mobile" class="icon">
+            <source srcset="images/icons/moon.avif" type="image/avif" />
+            <source srcset="images/icons/moon.webp" type="image/webp" />
+            <img
+              src="images/icons/moon.png"
+              alt="Moon icon"
+              width="24"
+              height="24"
+            />
+          </picture>
+          <picture id="sun-pic-mobile" class="icon hidden">
+            <source srcset="images/icons/day-mode.avif" type="image/avif" />
+            <source srcset="images/icons/day-mode.webp" type="image/webp" />
+            <img
+              src="images/icons/day-mode.png"
+              alt="Sun icon"
+              width="24"
+              height="24"
+            />
+          </picture>
         </button>
         <button
           id="mobile-menu-button"
@@ -188,9 +158,11 @@
       <div
         class="absolute bottom-16 left-16 md:bottom-24 md:left-24 lg:bottom-32 lg:left-32 z-20 hero-content"
       >
-        <h1 class="text-4xl md:text-6xl font-extralight text-white">
-          Luxury Hotel
-        </h1>
+        <h1
+          id="animated-text"
+          class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight"
+        ></h1>
+
         <button
           class="mt-4 px-6 py-3 mb-12 font-semibold rounded-full transition-all duration-200 hover-effect"
           style="
@@ -818,6 +790,30 @@
       </footer>
     </main>
 
-    <!-- <script src="js/script.js"></script> -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedText = document.getElementById("animated-text");
+        const phrase = "Hadra Hotel and Suit";
+
+        function createSpannedText(text) {
+          let htmlContent = "";
+          // Split the string into an array of characters, including spaces
+          const chars = text.split("");
+
+          chars.forEach((char, index) => {
+            // Handle spaces by inserting a non-breaking space entity
+            const displayChar = char === " " ? "&nbsp;" : char;
+            // Append a span with the character and a progressively longer animation-delay
+            htmlContent += `<span class="char" style="animation-delay: ${
+              0.05 * (index + 1)
+            }s;">${displayChar}</span>`;
+          });
+          return htmlContent;
+        }
+
+        // Inject the animated HTML into the container on page load
+        animatedText.innerHTML = createSpannedText(phrase);
+      });
+    </script>
   </body>
 </html>

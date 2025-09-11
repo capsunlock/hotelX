@@ -82,6 +82,9 @@ class HotelWebsite {
   }
   
   cacheElements() {
+    // Common elements
+    this.elements.body = document.body;
+
     // Mobile menu elements
     this.elements.mobileMenuButton = document.getElementById('mobile-menu-button');
     this.elements.closeMenuButton = document.getElementById('close-menu-button');
@@ -89,16 +92,13 @@ class HotelWebsite {
     this.elements.backdrop = document.getElementById('backdrop');
     
     // Theme switcher elements
-    this.elements.body = document.body;
-    this.elements.nav = document.querySelector('nav');
     this.elements.desktopThemeSwitcher = document.getElementById('theme-switcher-desktop');
     this.elements.mobileThemeSwitcher = document.getElementById('theme-switcher-mobile');
-    this.elements.mobileMoonIcon = document.getElementById('moon-icon-mobile');
-    this.elements.mobileSunIcon = document.getElementById('sun-icon-mobile');
-    this.elements.desktopMoonIcon = document.getElementById('moon-icon');
-    this.elements.desktopSunIcon = document.getElementById('sun-icon');
-    this.elements.navTitle = document.querySelector('.nav-title');
-    
+    this.elements.desktopMoonIcon = document.getElementById('moon-pic-desktop');
+    this.elements.desktopSunIcon = document.getElementById('sun-pic-desktop');
+    this.elements.mobileMoonIcon = document.getElementById('moon-pic-mobile');
+    this.elements.mobileSunIcon = document.getElementById('sun-pic-mobile');
+
     // Gallery elements
     this.elements.showMoreBtn = document.getElementById('show-more-btn');
     this.elements.hiddenImages = document.querySelectorAll('.more-gallery-item');
@@ -233,13 +233,15 @@ class HotelWebsite {
       }
       
       // Toggle icons
+      // Toggle icons based on the NEW theme
+      const isNowLight = newTheme === 'light';
       if (mobileMoonIcon && mobileSunIcon) {
-        mobileMoonIcon.classList.toggle('hidden', !isLight);
-        mobileSunIcon.classList.toggle('hidden', isLight);
+        mobileMoonIcon.classList.toggle('hidden', isNowLight);
+        mobileSunIcon.classList.toggle('hidden', !isNowLight);
       }
       if (desktopMoonIcon && desktopSunIcon) {
-        desktopMoonIcon.classList.toggle('hidden', !isLight);
-        desktopSunIcon.classList.toggle('hidden', isLight);
+        desktopMoonIcon.classList.toggle('hidden', isNowLight);
+        desktopSunIcon.classList.toggle('hidden', !isNowLight);
       }
       
       // Store preference in localStorage if available
@@ -253,20 +255,32 @@ class HotelWebsite {
     };
     
     // Load saved theme preference
-    try {
-      if (window.localStorage) {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-          body.dataset.theme = savedTheme;
-          if (savedTheme === 'light') {
-            toggleTheme(); // Sync icon states
-            body.dataset.theme = 'light'; // Reset to light after toggle
-          }
-        }
+
+// Load saved theme preference
+    const loadTheme = () => {
+      try {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        this.elements.body.dataset.theme = savedTheme;
+
+        const isLight = savedTheme === 'light';
+
+        // Toggle icons
+        this.elements.desktopMoonIcon?.classList.toggle('hidden', isLight);
+        this.elements.desktopSunIcon?.classList.toggle('hidden', !isLight);
+        this.elements.mobileMoonIcon?.classList.toggle('hidden', isLight);
+        this.elements.mobileSunIcon?.classList.toggle('hidden', !isLight);
+        
+        // Update aria-pressed
+        this.elements.desktopThemeSwitcher?.setAttribute('aria-pressed', isLight.toString());
+        this.elements.mobileThemeSwitcher?.setAttribute('aria-pressed', isLight.toString());
+
+      } catch (e) {
+        // localStorage not available, default to dark theme
+        console.warn('Could not access localStorage to load theme.');
       }
-    } catch (e) {
-      // localStorage not available
-    }
+    };
+
+    loadTheme(); // Apply the theme on initialization
     
     this.addEventListener(desktopThemeSwitcher, 'click', toggleTheme);
     this.addEventListener(mobileThemeSwitcher, 'click', toggleTheme);
