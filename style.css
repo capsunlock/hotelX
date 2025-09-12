@@ -139,6 +139,7 @@ h1, h2, h3, p, a, button, label, input, textarea {
   height: 50vh;
   background-color: transparent;
   box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+  /* width: clamp(250px, 80vw, 320px); */
 }
 
 /* Adjust for very small screens */

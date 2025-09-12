@@ -113,14 +113,22 @@ class HotelWebsite {
   }
   
   checkRequiredElements() {
-    // Check if essential elements exist
-    const essentialElements = [
-      this.elements.body,
-      this.elements.slideshowContainer,
-      this.elements.sections
-    ];
+    const essentialElementMap = {
+      'body': this.elements.body,
+      'slideshowContainer': this.elements.slideshowContainer,
+      'sections': this.elements.sections,
+      'mobileMenuButton': this.elements.mobileMenuButton
+      // Add any other truly essential elements here
+    };
+
+    for (const [name, element] of Object.entries(essentialElementMap)) {
+      if (!element) {
+        console.error(`Initialization failed: Essential element "${name}" not found in the DOM.`);
+        return false; // Stop initialization
+      }
+    }
     
-    return essentialElements.every(el => el !== null && el !== undefined);
+    return true; // All essential elements were found
   }
   
   init() {
@@ -416,7 +424,8 @@ class HotelWebsite {
     this.addEventListener(window, 'resize', handleResize);
   }
   
-  adjustContainerHeight() {
+  // Private helper to adjust the container's height to the active slide
+  _adjustContainerHeight() {
     const { sections, slideshowContainer } = this.elements;
     
     if (!sections || !slideshowContainer || !sections[this.currentSlideIndex]) return;
@@ -424,21 +433,21 @@ class HotelWebsite {
     const activeSectionHeight = sections[this.currentSlideIndex].offsetHeight;
     slideshowContainer.style.height = `${activeSectionHeight}px`;
   }
-  
-  updateSlideshow(index) {
-    const { sections, slideshowContainer, dots, navLinks } = this.elements;
-    
+
+  // Private helper to update the visual position of the slideshow
+  _updateSlidePosition(index) {
+    const { sections, slideshowContainer } = this.elements;
     if (!sections || !slideshowContainer) return;
     
-    // Ensure the index is within the valid range
     this.currentSlideIndex = (index + sections.length) % sections.length;
     const offset = this.currentSlideIndex * -100;
     slideshowContainer.style.transform = `translateX(${offset}vw)`;
+  }
+
+  // Private helper to update the active state of dots and nav links
+  _updateIndicators() {
+    const { dots, navLinks } = this.elements;
     
-    // Adjust the container's height
-    this.adjustContainerHeight();
-    
-    // Update dot highlights and aria-selected
     if (dots) {
       dots.forEach((dot) => {
         const dotIndex = parseInt(dot.dataset.index, 10);
@@ -448,13 +457,28 @@ class HotelWebsite {
       });
     }
     
-    // Update nav link glows
     if (navLinks) {
       navLinks.forEach((link) => {
         const linkIndex = parseInt(link.dataset.index, 10);
         link.classList.toggle('nav-link-glow', linkIndex === this.currentSlideIndex);
       });
     }
+  }
+
+  // The main public method, now much cleaner
+  updateSlideshow(index) {
+    this._updateSlidePosition(index);
+    this._adjustContainerHeight();
+    this._updateIndicators();
+  }
+
+  // Also, update the setupResizeHandler to use the new private method
+  setupResizeHandler() {
+    const handleResize = debounce(() => {
+      this._adjustContainerHeight(); // Use the new private method here
+    }, 150);
+    
+    this.addEventListener(window, 'resize', handleResize);
   }
   
   startSlideshow() {
