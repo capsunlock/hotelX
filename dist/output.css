@@ -582,6 +582,10 @@ video {
   }
 }
 
+.visible {
+  visibility: visible;
+}
+
 .fixed {
   position: fixed;
 }
@@ -731,8 +735,16 @@ video {
   flex-grow: 1;
 }
 
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .resize-none {
   resize: none;
+}
+
+.resize {
+  resize: both;
 }
 
 .grid-cols-1 {
@@ -1028,6 +1040,10 @@ video {
 
 .tracking-tight {
   letter-spacing: -0.025em;
+}
+
+.text-brand-gold {
+  color: var(--color-brand-gold);
 }
 
 .text-gray-500 {
@@ -1530,7 +1546,7 @@ h1, h2, h3, p, a, button, label, input, textarea {
 
 /* Style the 'Amenities & Dining' container */
 
-#about .amenities-container {
+#amenities  .amenities-container {
   margin-top: 4rem;
   /* Add space between 'Our Story' and this section */
   padding-top: 2rem;
@@ -1540,14 +1556,14 @@ h1, h2, h3, p, a, button, label, input, textarea {
 
 /* Style the amenities list for a cleaner look */
 
-#about .amenities-container ul {
+#amenities  .amenities-container ul {
   list-style-type: none;
   /* Remove default bullets */
   padding-left: 0;
   margin-top: 1.5rem;
 }
 
-#about .amenities-container li {
+#amenities  .amenities-container li {
   position: relative;
   padding-left: 2em;
   /* Create space for a custom bullet */
@@ -1558,7 +1574,7 @@ h1, h2, h3, p, a, button, label, input, textarea {
 
 /* Create a custom, gold-colored bullet for each list item */
 
-#about .amenities-container li::before {
+#amenities .amenities-container li::before {
   content: '—';
   /* Use an em dash for an elegant bullet */
   position: absolute;
@@ -1567,17 +1583,6 @@ h1, h2, h3, p, a, button, label, input, textarea {
   font-weight: bold;
   font-size: 1.2em;
   line-height: 1;
-}
-
-/* --- Nav Scroll Effect --- */
-
-#main-nav {
-  transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
-}
-
-#main-nav.scrolled {
-  background-color: var(--color-nav-bg);
-  backdrop-filter: blur(8px);
 }
 
 .hover\:scale-105:hover {

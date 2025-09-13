@@ -161,10 +161,28 @@ class HotelWebsite {
     this.setupSlideshow();
     this.setupNavigation();
     this.setupResizeHandler();
+    this.setupHeroAnimation()
+
+    this.initScrollHandler();
    
     
     // Initial setup
     this.updateSlideshow(0);
+  }
+
+  setupHeroAnimation() {
+      const animatedText = document.getElementById("animated-text");
+if (animatedText) {
+    const phrase = animatedText.innerText;
+    animatedText.innerHTML = ""; // Clear existing text
+    phrase.split("").forEach((char, index) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.style.animationDelay = `${0.05 * (index + 1)}s`;
+        span.innerHTML = char === " " ? "&nbsp;" : char;
+        animatedText.appendChild(span);
+    });
+}
   }
   
   // Add event listener with tracking for cleanup
