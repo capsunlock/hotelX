@@ -14,6 +14,7 @@
   </head>
   <body>
     <nav
+      id="main-nav"
       class="fixed top-0 left-0 w-full z-40 flex justify-between items-center p-4 px-6 md:p-4 lg:p-6"
       style="background-color: transparent; backdrop-filter: blur(4px)"
       role="navigation"
@@ -23,7 +24,7 @@
         class="text-2xl font-bold nav-title"
         style="color: var(--color-text-primary)"
       >
-        HADRA
+        <!-- HADRA -->
       </h2>
 
       <div
@@ -66,10 +67,10 @@
         class="hidden md:block"
       >
         <picture id="moon-pic-desktop" class="icon">
-          <source srcset="images/icons/moon.avif" type="image/avif" />
-          <source srcset="images/icons/moon.webp" type="image/webp" />
+          <source srcset="media/images/icons/moon.avif" type="image/avif" />
+          <source srcset="media/images/icons/moon.webp" type="image/webp" />
           <img
-            src="images/icons/moon.png"
+            src="media/images/icons/moon.png"
             alt="Moon icon"
             width="24"
             height="24"
@@ -77,10 +78,10 @@
         </picture>
 
         <picture id="sun-pic-desktop" class="icon hidden">
-          <source srcset="images/icons/day-mode.avif" type="image/avif" />
-          <source srcset="images/icons/day-mode.webp" type="image/webp" />
+          <source srcset="media/images/icons/day-mode.avif" type="image/avif" />
+          <source srcset="media/images/icons/day-mode.webp" type="image/webp" />
           <img
-            src="images/icons/day-mode.png"
+            src="media/images/icons/day-mode.png"
             alt="Sun icon"
             width="24"
             height="24"
@@ -95,20 +96,32 @@
           aria-pressed="false"
         >
           <picture id="moon-pic-mobile" class="icon">
-            <source srcset="images/icons/moon.avif" type="image/avif" />
-            <source srcset="images/icons/moon.webp" type="image/webp" />
+            <source
+              srcset="media/images/icons/moon.avif"
+              type="media/image/avif"
+            />
+            <source
+              srcset="media/images/icons/moon.webp"
+              type="media/image/webp"
+            />
             <img
-              src="images/icons/moon.png"
+              src="media/images/icons/moon.png"
               alt="Moon icon"
               width="24"
               height="24"
             />
           </picture>
           <picture id="sun-pic-mobile" class="icon hidden">
-            <source srcset="images/icons/day-mode.avif" type="image/avif" />
-            <source srcset="images/icons/day-mode.webp" type="image/webp" />
+            <source
+              srcset="media/images/icons/day-mode.avif"
+              type="media/image/avif"
+            />
+            <source
+              srcset="media/images/icons/day-mode.webp"
+              type="media/image/webp"
+            />
             <img
-              src="images/icons/day-mode.png"
+              src="media/images/icons/day-mode.png"
               alt="Sun icon"
               width="24"
               height="24"
@@ -146,14 +159,26 @@
       class="fixed top-0 left-0 w-full h-screen overflow-hidden z-10"
       role="banner"
     >
-      <div
-        class="absolute inset-0 bg-cover bg-center"
-        style="
-          background-image: url('https://placehold.co/1920x1080/000000/fff?text=Luxury+Hotel');
-        "
+      <video
+        poster="media/images/character/parking-outside.webp"
+        autoplay
+        loop
+        muted
+        playsinline
+        class="absolute inset-0 w-full h-full object-cover hidden md:block"
+        aria-label="Promotional video of the hotel exterior and amenities."
       >
-        <div class="absolute inset-0 bg-black opacity-40"></div>
-      </div>
+        <source src="media/motion/hero-desktop.webm" type="video/webm" />
+        <source src="media/motion/hero-desktop.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div
+        class="absolute inset-0 bg-cover bg-center md:hidden"
+        style="background-image: url('media/images/character/front-view.webp')"
+      ></div>
+
+      <div class="absolute inset-0 bg-black opacity-40"></div>
 
       <div
         class="absolute bottom-16 left-16 md:bottom-24 md:left-24 lg:bottom-32 lg:left-32 z-20 hero-content"
@@ -306,12 +331,7 @@
                 class="flex flex-col md:flex-row items-center justify-between"
               >
                 <div class="md:w-1/2">
-                  <h3
-                    class="text-3xl font-light mb-2"
-                    style="color: var(--color-text-primary)"
-                  >
-                    Rooms & Suites
-                  </h3>
+                  <h3 class="text-3xl font-light mb-2">Rooms & Suites</h3>
                   <p
                     class="leading-relaxed mb-6"
                     style="color: var(--color-text-secondary)"
@@ -337,15 +357,22 @@
                 <div
                   class="md:w-1/2 mt-8 md:mt-0 md:ml-12 overflow-hidden rounded-lg"
                 >
-                  <img
-                    src="https://placehold.co/800x600/2B3035/A0A4A8?text=Ocean+View+Suite"
-                    alt="Ocean View Suite with private balcony and ocean views"
+                  <picture
                     class="w-full shadow-lg suite-image"
                     style="
                       background-color: var(--color-surface);
                       border: 1px solid var(--color-border);
                     "
-                  />
+                  >
+                    <source
+                      srcset="media/image/character/suit.webp"
+                      type="media/image/webp"
+                    />
+                    <img
+                      src="media/images/character/suit.jpg"
+                      alt="Ocean View Suite with private balcony and ocean views"
+                    />
+                  </picture>
                 </div>
               </div>
 
@@ -353,12 +380,7 @@
                 class="flex flex-col md:flex-row-reverse items-center justify-between"
               >
                 <div class="md:w-1/2">
-                  <h3
-                    class="text-3xl font-light mb-2"
-                    style="color: var(--color-text-primary)"
-                  >
-                    Event Center
-                  </h3>
+                  <h3 class="text-3xl font-light mb-2">Event Center</h3>
                   <p
                     class="leading-relaxed mb-6"
                     style="color: var(--color-text-secondary)"
@@ -385,15 +407,23 @@
                 <div
                   class="md:w-1/2 mt-8 md:mt-0 md:mr-12 overflow-hidden rounded-lg"
                 >
-                  <img
-                    src="https://placehold.co/800x600/2B3035/A0A4A8?text=Garden+Terrace+Room"
-                    alt="Garden Terrace Room with direct garden access"
+                  <picture
                     class="w-full shadow-lg suite-image"
                     style="
                       background-color: var(--color-surface);
                       border: 1px solid var(--color-border);
                     "
-                  />
+                  >
+                    <source
+                      srcset="media/image/character/dining.webp"
+                      type="media/image/webp"
+                    />
+
+                    <img
+                      src="media/images/character/dining.jpg"
+                      alt="Well lit conference center"
+                    />
+                  </picture>
                 </div>
               </div>
             </div>
@@ -402,7 +432,7 @@
 
         <section
           id="experiences"
-          class="slideshow-section surface-color"
+          class="slideshow-section"
           role="tabpanel"
           aria-label="Experiences section"
         >
@@ -417,11 +447,18 @@
                   border: 1px solid var(--color-border);
                 "
               >
-                <img
-                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Fine+Dining"
-                  alt="Fine dining restaurant with elegant ambiance"
-                  class="w-full rounded-lg shadow-lg mb-4"
-                />
+                <picture class="w-full rounded-lg shadow-lg mb-4">
+                  <source
+                    srcset="media/images/character/fine-dining.webp"
+                    type="media/image/webp"
+                  />
+                  <img
+                    src="media/images/character/fine-dining.jpg"
+                    alt="Fine dining restaurant with elegant ambiance"
+                    class="w-full rounded-lg shadow-lg mb-4"
+                  />
+                </picture>
+
                 <h3
                   class="text-3xl font-light mb-2"
                   style="color: var(--color-text-primary)"
@@ -446,11 +483,18 @@
                   border: 1px solid var(--color-border);
                 "
               >
-                <img
-                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Spa+and+Wellness"
-                  alt="Luxury spa and wellness center"
-                  class="w-full rounded-lg shadow-lg mb-4"
-                />
+                <picture class="w-full rounded-lg shadow-lg mb-4">
+                  <source
+                    srcset="media/images/character/spa.webp"
+                    type="media/image/webp"
+                  />
+                  <img
+                    src="media/images/character/spa.jpg"
+                    alt="Luxury spa and wellness center"
+                    class="w-full rounded-lg shadow-lg mb-4"
+                  />
+                </picture>
+
                 <h3
                   class="text-3xl font-light mb-2"
                   style="color: var(--color-text-primary)"
@@ -476,11 +520,18 @@
                   border: 1px solid var(--color-border);
                 "
               >
-                <img
-                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Pool"
-                  alt="Stunning pool area with scenic views"
-                  class="w-full rounded-lg shadow-lg mb-4"
-                />
+                <picture class="w-full rounded-lg shadow-lg mb-4">
+                  <source
+                    srcset="media/images/character/pool.webp"
+                    type="media/image/webp"
+                  />
+                  <img
+                    src="media/images/character/pool.jpg"
+                    alt="Stunning pool area with scenic views"
+                    class="w-full rounded-lg shadow-lg mb-4"
+                  />
+                </picture>
+
                 <h3
                   class="text-3xl font-light mb-2"
                   style="color: var(--color-text-primary)"
@@ -503,11 +554,18 @@
                   border: 1px solid var(--color-border);
                 "
               >
-                <img
-                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Wi-Fi"
-                  alt="High-speed Wi-Fi connectivity"
-                  class="w-full rounded-lg shadow-lg mb-4"
-                />
+                <picture class="w-full rounded-lg shadow-lg mb-4">
+                  <source
+                    srcset="media/images/character/wifi.webp"
+                    type="media/image/webp"
+                  />
+                  <img
+                    src="media/images/character/wifi.jpg"
+                    alt="High-speed Wi-Fi connectivity"
+                    class="w-full rounded-lg shadow-lg mb-4"
+                  />
+                </picture>
+
                 <h3
                   class="text-3xl font-light mb-2"
                   style="color: var(--color-text-primary)"
@@ -530,11 +588,18 @@
                   border: 1px solid var(--color-border);
                 "
               >
-                <img
-                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Night+Club"
-                  alt="Exclusive night club with live entertainment"
-                  class="w-full rounded-lg shadow-lg mb-4"
-                />
+                <picture class="w-full rounded-lg shadow-lg mb-4">
+                  <source
+                    srcset="media/images/character/laundry.webp"
+                    type="media/image/webp"
+                  />
+                  <img
+                    src="media/images/character/laundry.jpg"
+                    alt="Exclusive laundry set"
+                    class="w-full rounded-lg shadow-lg mb-4"
+                  />
+                </picture>
+
                 <h3
                   class="text-3xl font-light mb-2"
                   style="color: var(--color-text-primary)"
@@ -560,11 +625,18 @@
                   border: 1px solid var(--color-border);
                 "
               >
-                <img
-                  src="https://placehold.co/600x400/2B3035/A0A4A8?text=Game+Room"
-                  alt="Entertainment game room"
-                  class="w-full rounded-lg shadow-lg mb-4"
-                />
+                <picture class="w-full rounded-lg shadow-lg mb-4">
+                  <source
+                    srcset="media/images/character/parking-flowers.webp"
+                    type="media/image/webp"
+                  />
+                  <img
+                    src="media/images/character/parking-flowers.jpg"
+                    alt="Adequate parking space"
+                    class="w-full rounded-lg shadow-lg mb-4"
+                  />
+                </picture>
+
                 <h3
                   class="text-3xl font-light mb-2"
                   style="color: var(--color-text-primary)"
@@ -689,15 +761,13 @@
 
       <section
         id="about"
-        class="py-20 px-8 lg:px-20 main-content-color"
+        class="py-20 px-8 lg:px-20"
         style="background-color: var(--color-background)"
       >
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div class="md:order-2">
             <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Story</h2>
-            <p
-              class="text-lg main-paragraph-color leading-relaxed story-paragraph"
-            >
+            <p class="text-lg leading-relaxed story-paragraph">
               Founded on the principle of timeless elegance and unparalleled
               service, HADRA is more than just a place to stay—it's a
               destination in itself. Nestled in a quiet, mountainous region, our
@@ -709,18 +779,24 @@
             </p>
           </div>
           <div class="md:order-1">
-            <img
-              src="https://placehold.co/800x600/C0B283/2D3034?text=Hotel+Lobby"
-              alt="A luxurious hotel lobby with elegant decor."
-              class="w-full h-auto rounded-lg shadow-xl"
-            />
+            <picture class="w-full h-auto rounded-lg shadow-xl">
+              <source
+                srcset="media/image/character/hotel-lobby.webp"
+                type="media/image/webp"
+              />
+              <img
+                src="media/images/character/hotel-lobby.jpg"
+                alt="A luxurious hotel lobby with elegant decor."
+                loading="lazy"
+              />
+            </picture>
           </div>
         </div>
       </section>
 
       <section
-        id="about"
-        class="py-5 px-8 lg:px-20 main-content-color"
+        id="amenities"
+        class="py-5 px-8 lg:px-20"
         style="background-color: var(--color-background)"
       >
         <div
@@ -771,20 +847,20 @@
 
       <!-- <section
         id="book"
-        class="py-20 px-8 lg:px-20 main-content-color"
+        class="py-20 px-8 lg:px-20 "
         style="background-color: var(--color-background)"
       >
         <div
-          class="max-w-4xl mx-auto text-center surface-color p-12 rounded-lg shadow-2xl"
+          class="max-w-4xl mx-auto text-center  p-12 rounded-lg shadow-2xl"
           style="
             background-color: var(--color-surface);
             border: 1px solid var(--color-border);
           "
         >
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 main-text-color">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 ">
             Book Your Stay
           </h2>
-          <p class="text-lg main-paragraph-color mb-8">
+          <p class="text-lg  mb-8">
             Begin your journey into a world of luxury. Let us create your
             perfect stay Click the button below to secure your stay with us.
           </p>
@@ -801,79 +877,66 @@
         </div>
       </section> -->
 
-      <section
-        id="find-us"
-        class="p-8 md:p-16 lg:p-24"
-        style="background-color: var(--color-background)"
-      >
-        <div class="flex flex-col lg:flex-row gap-8 lg:gap-16">
+      <section id="find-us" class="p-8 md:p-16 lg:p-24">
+        <div
+          class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 lg:gap-16 items-stretch"
+        >
           <div
-            class="max-w-4xl mx-auto text-center surface-color p-12 rounded-lg shadow-2xl"
-            style="
-              background-color: var(--color-surface);
-              border: 1px solid var(--color-border);
-            "
+            class="lg:w-2/3 p-12 rounded-lg shadow-2xl flex flex-col justify-center text-center"
           >
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 main-text-color">
-              Book Your Stay
-            </h2>
-            <p class="text-lg main-paragraph-color mb-8">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Book Your Stay</h2>
+            <p class="text-lg mb-8">
               Begin your journey into a world of luxury. Let us create your
-              perfect stay Click the button below to secure your stay with us.
+              perfect stay. Click the button below to secure your stay with us.
             </p>
-
             <a
               href="#"
-              class="nav-link transition-colors inline py-2 px-10 rounded-full uppercase duration-300 button-bg-color button-text-color hover:scale-105"
+              class="nav-link transition-colors inline py-2 px-10 rounded-full uppercase duration-300 button-bg-color button-text-color hover:scale-105 self-center"
               style="
                 color: var(--color-brand-gold);
                 background-color: transparent;
               "
-              >BOOK NOW</a
             >
+              BOOK NOW
+            </a>
           </div>
-          <!-- <div
-            class="w-full lg:w-2/3 rounded-lg shadow-lg overflow-hidden"
-          ></div> -->
-          <div class="w-full lg:w-1/3 p-6 rounded-lg shadow-lg surface-color">
-            <h3 class="text-2xl font-semibold mb-4 main-text-color">
-              Contact Information
-            </h3>
+
+          <div class="lg:w-1/3 p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold mb-4">Contact Information</h3>
             <address class="not-italic">
-              <p class="mb-2 main-paragraph-color">
-                123 Luxury Lane, Metropolis, 10001
-              </p>
-              <p class="mb-2 main-paragraph-color">
+              <p class="mb-2">123 Luxury Lane, Metropolis, 10001</p>
+              <p class="mb-2">
                 Phone:
                 <a
                   class="nav-link transition-colors duration-200"
                   href="tel:+15551234567"
-                  >+1 (555) 123-4567</a
                 >
+                  +1 (555) 123-4567
+                </a>
               </p>
-              <p class="mb-2 main-paragraph-color">
+              <p class="mb-2">
                 Email:
                 <a
                   class="nav-link transition-colors duration-200"
                   href="mailto:info@hadrahotel.com"
-                  >info@hadrahotel.com</a
                 >
+                  info@hadrahotel.com
+                </a>
               </p>
-
-              <p class="mb-2 main-paragraph-color">
+              <p class="mb-2">
                 Find Us @ →
-                <a class="nav-link transition-colors duration-200" href="#"
-                  >Maps</a
-                >
+                <a class="nav-link transition-colors duration-200" href="#">
+                  Maps
+                </a>
               </p>
-              <p class="main-paragraph-color">Open 24/7</p>
+              <p class="">Open 24/7</p>
             </address>
           </div>
         </div>
       </section>
 
       <footer
-        class="w-full bg-black p-8 md:p-12 lg:p-16 border-t main-paragraph-color"
+        class="w-full bg-black p-8 md:p-12 lg:p-16 border-t"
         style="
           border-color: var(--color-border);
           color: var(--color-text-secondary);
@@ -882,7 +945,7 @@
       >
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="mb-6 md:mb-0">
-            <h3 class="text-3xl font-bold mb-2 main-text-color">HADRA</h3>
+            <h3 class="text-3xl font-bold mb-2">HADRA</h3>
             <p class="text-sm">
               Luxury Redefined. Experience unparalleled elegance and serenity at
               the heart of the city.
@@ -890,9 +953,7 @@
           </div>
 
           <div>
-            <h4 class="text-xl font-semibold mb-4 main-text-color">
-              Quick Links
-            </h4>
+            <h4 class="text-xl font-semibold mb-4">Quick Links</h4>
             <ul class="space-y-2 text-sm">
               <li>
                 <a href="#rooms" class="hover:text-white transition-colors"
@@ -918,7 +979,7 @@
           </div>
 
           <div>
-            <h4 class="text-xl font-semibold mb-4 main-text-color">Contact</h4>
+            <h4 class="text-xl font-semibold mb-4">Contact</h4>
             <ul class="space-y-2 text-sm">
               <li>123 Luxury Lane, Cityville, State 54321</li>
               <li>+1 (555) 123-4567</li>
@@ -939,7 +1000,7 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const animatedText = document.getElementById("animated-text");
-        const phrase = "Hadra Hotel and Suit";
+        const phrase = "Hadra";
 
         function createSpannedText(text) {
           let htmlContent = "";

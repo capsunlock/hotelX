@@ -747,6 +747,10 @@ video {
   align-items: center;
 }
 
+.items-stretch {
+  align-items: stretch;
+}
+
 .justify-end {
   justify-content: flex-end;
 }
@@ -811,6 +815,10 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+}
+
+.self-center {
+  align-self: center;
 }
 
 .overflow-hidden {
@@ -924,6 +932,11 @@ video {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .pb-8 {
@@ -1242,36 +1255,14 @@ h1, h2, h3, p, a, button, label, input, textarea {
   position: fixed;
   top: 0;
   right: 0;
-  width: 80vw;
-  /* Responsive width based on viewport */
-  max-width: 320px;
-  /* Max width for larger screens */
-  min-width: 250px;
-  /* Minimum width for usability */
+  /* Use clamp for fluid width: min, preferred, max */
+  width: clamp(50px, 40vw, 320px);
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 50;
-  height: 50vh;
+  height: 40vh;
   background-color: transparent;
   box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Adjust for very small screens */
-
-@media (max-width: 480px) {
-  .mobile-menu-container {
-    width: 40vw;
-    min-width: 50px;
-  }
-}
-
-/* Adjust for tablets */
-
-@media (min-width: 481px) and (max-width: 768px) {
-  .mobile-menu-container {
-    width: 60vw;
-    min-width: 350px;
-  }
 }
 
 .mobile-menu-container.open {
@@ -1355,24 +1346,6 @@ h1, h2, h3, p, a, button, label, input, textarea {
   background-color: var(--color-brand-gold);
   animation: dotGlow 3s infinite alternate ease-in-out;
   transform: scale(1.1);
-}
-
-.main-content-color {
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
-}
-
-.main-text-color {
-  color: var(--color-text-primary);
-}
-
-.main-paragraph-color {
-  color: var(--color-text-secondary);
-}
-
-.surface-color {
-  background-color: var(--color-surface);
-  color: var(--color-text-primary);
 }
 
 /* Container for the sliding sections */
@@ -1596,6 +1569,17 @@ h1, h2, h3, p, a, button, label, input, textarea {
   line-height: 1;
 }
 
+/* --- Nav Scroll Effect --- */
+
+#main-nav {
+  transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+}
+
+#main-nav.scrolled {
+  background-color: var(--color-nav-bg);
+  backdrop-filter: blur(8px);
+}
+
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -1762,8 +1746,8 @@ h1, h2, h3, p, a, button, label, input, textarea {
     padding: 4rem;
   }
 
-  .md\:p-8 {
-    padding: 2rem;
+  .md\:p-4 {
+    padding: 1rem;
   }
 
   .md\:text-4xl {
@@ -1820,6 +1804,10 @@ h1, h2, h3, p, a, button, label, input, textarea {
 
   .lg\:p-24 {
     padding: 6rem;
+  }
+
+  .lg\:p-6 {
+    padding: 1.5rem;
   }
 
   .lg\:p-8 {

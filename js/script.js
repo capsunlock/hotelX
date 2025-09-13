@@ -130,6 +130,22 @@ class HotelWebsite {
     
     return true; // All essential elements were found
   }
+
+  // Add this new method inside the HotelWebsite class
+setupNavScrollEffects() {
+  const nav = document.getElementById('main-nav');
+  if (!nav) return;
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) { // Add 'scrolled' class after 50px of scrolling
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  };
+
+  this.addEventListener(window, 'scroll', handleScroll, { passive: true });
+}
   
   init() {
     this.setupMobileMenu();
@@ -138,6 +154,7 @@ class HotelWebsite {
     this.setupSlideshow();
     this.setupNavigation();
     this.setupResizeHandler();
+    this.setupNavScrollEffects(); 
     
     // Initial setup
     this.updateSlideshow(0);

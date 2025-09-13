@@ -130,33 +130,17 @@ h1, h2, h3, p, a, button, label, input, textarea {
   position: fixed;
   top: 0;
   right: 0;
-  width: 80vw; /* Responsive width based on viewport */
-  max-width: 320px; /* Max width for larger screens */
-  min-width: 250px; /* Minimum width for usability */
+  /* Use clamp for fluid width: min, preferred, max */
+  width: clamp(50px, 40vw, 320px);
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 50;
-  height: 50vh;
-  background-color: transparent;
+  height: 40vh; 
+  background-color: transparent; 
   box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
-  /* width: clamp(250px, 80vw, 320px); */
 }
 
-/* Adjust for very small screens */
-@media (max-width: 480px) {
-  .mobile-menu-container {
-    width: 40vw;
-    min-width: 50px;
-  }
-}
 
-/* Adjust for tablets */
-@media (min-width: 481px) and (max-width: 768px) {
-  .mobile-menu-container {
-    width: 60vw;
-    min-width: 350px;
-  }
-}
 
 .mobile-menu-container.open {
   transform: translateX(0);
@@ -235,23 +219,6 @@ h1, h2, h3, p, a, button, label, input, textarea {
   transform: scale(1.1);
 }
 
-.main-content-color {
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
-}
-
-.main-text-color {
-  color: var(--color-text-primary);
-}
-
-.main-paragraph-color {
-  color: var(--color-text-secondary);
-}
-
-.surface-color {
-  background-color: var(--color-surface);
-  color: var(--color-text-primary);
-}
 
 /* Container for the sliding sections */
 .page-container {
@@ -442,4 +409,14 @@ h1, h2, h3, p, a, button, label, input, textarea {
   font-weight: bold;
   font-size: 1.2em;
   line-height: 1;
+}
+
+/* --- Nav Scroll Effect --- */
+#main-nav {
+    transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+}
+
+#main-nav.scrolled {
+  background-color: var(--color-nav-bg);
+  backdrop-filter: blur(8px);
 }
