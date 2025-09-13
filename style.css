@@ -410,13 +410,3 @@ h1, h2, h3, p, a, button, label, input, textarea {
   font-size: 1.2em;
   line-height: 1;
 }
-
-/* --- Nav Scroll Effect --- */
-#main-nav {
-    transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
-}
-
-#main-nav.scrolled {
-  background-color: var(--color-nav-bg);
-  backdrop-filter: blur(8px);
-}

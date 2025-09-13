@@ -70,6 +70,10 @@ class HotelWebsite {
     this.resizeTimer = null;
     this.currentSlideIndex = 0;
     this.isPaused = false;
+
+    this.nav = document.getElementById('main-nav');
+    this.pageContainer = document.querySelector('.page-container');
+    this.heroSectionHeight = window.innerHeight; // Height of the initial hero section
     
     // Cache DOM elements
     this.elements = {};
@@ -79,6 +83,24 @@ class HotelWebsite {
     if (this.checkRequiredElements()) {
       this.init();
     }
+  }
+
+    // Add this method to handle the scroll event
+  initScrollHandler() {
+    const handleScroll = () => {
+      if (window.scrollY > this.heroSectionHeight - 100) { // -100 to trigger a bit before
+        this.nav.classList.add('scrolled');
+        this.pageContainer.classList.add('scrolled');
+      } else {
+        this.nav.classList.remove('scrolled');
+        this.pageContainer.classList.remove('scrolled');
+      }
+    };
+    
+    // Debounce the scroll handler for performance
+    this.scrollHandler = debounce(handleScroll, 20);
+    this.listeners.push({ element: window, event: 'scroll', handler: this.scrollHandler });
+    window.addEventListener('scroll', this.scrollHandler);
   }
   
   cacheElements() {
@@ -131,21 +153,6 @@ class HotelWebsite {
     return true; // All essential elements were found
   }
 
-  // Add this new method inside the HotelWebsite class
-setupNavScrollEffects() {
-  const nav = document.getElementById('main-nav');
-  if (!nav) return;
-
-  const handleScroll = () => {
-    if (window.scrollY > 50) { // Add 'scrolled' class after 50px of scrolling
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  };
-
-  this.addEventListener(window, 'scroll', handleScroll, { passive: true });
-}
   
   init() {
     this.setupMobileMenu();
@@ -154,7 +161,7 @@ setupNavScrollEffects() {
     this.setupSlideshow();
     this.setupNavigation();
     this.setupResizeHandler();
-    this.setupNavScrollEffects(); 
+   
     
     // Initial setup
     this.updateSlideshow(0);
